@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #370557ff, #2e0444);
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* NAV BAR */
+        nav {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px 30px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #3b055f;
+            transform: translateY(-2px);
+        }
+
+        /* MAIN BOX */
+        .container {
+            width: 650px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 35px;
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            animation: fade 1s ease-in-out;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        textarea {
+            width: 100%;
+            height: 140px;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            color: white;
+            background: linear-gradient(90deg, #2f0351, #2f0460);
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #2a0455, #18054d);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            animation: fade 0.7s ease-in-out;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        /* DASHBOARD BUTTON */
+.dashboard-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 22px;
+    font-size: 18px;
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 12px rgba(142, 45, 226, 0.4);
+}
+
+.dashboard-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 6px 16px rgba(142, 45, 226, 0.6);
+    background: linear-gradient(135deg, #5F00FF, #A020F0);
+}
+
+.dashboard-btn:active {
+    transform: scale(0.98);
+}
+
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/">🏠 Home</a>
+    <a href="/contribute">➕ Contributor</a>
+     <a href="/dashboard" class="dashboard-btn" style="margin-left:auto;">📊 Dashboard</a>
+
+</nav>
+
+<div class="container">
+    <h2 style="color:white; text-align:center; margin-bottom:20px;">AI Sentiment Analyzer 💬</h2>
+
+    <form action="/" method="POST">
+        <textarea name="user_text" placeholder="Type something..."></textarea>
+        <button type="submit">Analyze Sentiment</button>
+    </form>
+
+    {% if sentiment %}
+    <div class="result" style="color: {{ sentiment.color }};">
+        {{ sentiment.label }}
+    </div>
+    {% endif %}
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contribute Data</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            background: linear-gradient(135deg, #1d034b, #1d034b);
+            padding: 40px;
+            margin: 0;
+        }
+
+        .box {
+            width: 500px;
+            margin: auto;
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: fade 1s ease-in-out;
+        }
+
+        @keyframes fade {
+            from { opacity:0; transform: translateY(15px); }
+            to { opacity:1; transform: translateY(0); }
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            background: linear-gradient(90deg, #1d034b, #28045f);
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .msg {
+            color: #004400;
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+            animation: fade 0.7s ease-in-out;
+        }
+
+        .back-btn {
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+            background: #ffffffcc;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #333;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: white;
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+
+<a class="back-btn" href="/">⬅ Back</a>
+
+<div class="box">
+    <h2 style="color:rgb(130, 102, 102); text-align:center;">Contribute Training Data ✨</h2>
+
+    <form method="POST" action="/contribute">
+        <textarea name="new_text" placeholder="Write your sentence..."></textarea>
+
+        <select name="label">
+            <option value="">-- Select Sentiment --</option>
+            <option value="positive">😊 Positive</option>
+            <option value="negative">😞 Negative</option>
+            <option value="neutral">😐 Neutral</option>
+        </select>
+
+        <button type="submit">Add to Dataset</button>
+    </form>
+
+    {% if message %}
+    <div class="msg">{{ message }}</div>
+    {% endif %}
+</div>
+
+</body>
+</html>
